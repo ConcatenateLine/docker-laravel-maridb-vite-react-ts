@@ -1,0 +1,37 @@
+services:
+  laravel:
+    image: bitnami/laravel:latest
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    volumes:
+      - ./backend:/app
+    depends_on:
+      - mariadb
+
+  mariadb:
+    image: bitnami/mariadb:latest
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/bitnami/mariadb
+
+  react:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    volumes:
+      - ./frontend/app:/app
+    ports:
+      - "5173:5173"
+    working_dir: /app
+    command: npm run dev
+
+volumes:
+  db_data:
