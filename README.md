@@ -16,6 +16,7 @@
 
 ## Laravel Project Initialization
 
+- If the `./backend` directory not exist, the container will create it.
 - If the `./backend` directory is empty when you first start the containers, the Bitnami Laravel container will automatically create a new Laravel project inside `./backend`.
 - If `./backend` already contains a Laravel project, it will be used as-is.
 - This makes it easy to start a new Laravel project or use an existing one without extra commands.
