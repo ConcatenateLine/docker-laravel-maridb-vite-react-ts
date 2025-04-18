@@ -22,18 +22,6 @@
 - This makes it easy to start a new Laravel project or use an existing one without extra commands.
 - The environment variables for the Laravel project are loaded from the root `.env` file. You app-key can be generated automatically in the env file of the new project, you must set in the .env root file if is not set automatically.
 
-### Starter Kit Configuration
-
-- You can automatically install a Laravel starter kit (breeze, jetstream, or fortify) when a new project is created.
-- Set the desired starter kit in your `.env` file:
-  ```env
-  LARAVEL_STARTER_KIT=breeze
-  # LARAVEL_STARTER_KIT_OPTIONS=  # e.g., --stack=livewire for Jetstream
-  ```
-- Supported values for `LARAVEL_STARTER_KIT` are `breeze`, `jetstream`, and `fortify`.
-- For Jetstream, you can specify additional options with `LARAVEL_STARTER_KIT_OPTIONS` (e.g., `--stack=livewire` or `--stack=inertia`).
-- On first startup, the container will create the project and install the selected starter kit automatically.
-
 ## Directory Structure
 
 - `backend/`   — Laravel app (mounted to `/app` in the container)
@@ -47,13 +35,13 @@
 
 ## First-time Setup
 
-- For Laravel, run migrations and generate APP_KEY (if not set in the .env file) inside the container:
+- For Laravel automatically run migrations and generate APP_KEY (if not set in the .env file) inside the container, if you have issues with this, you can run the following commands:
   ```sh
   docker compose -f compose.dev.yaml exec laravel php artisan migrate
   docker compose -f compose.dev.yaml exec laravel php artisan key:generate
   ```
 - For React, the development server will reload on file changes.
-- On first startup, the container will create the project and install the selected starter kit automatically, so you don't need to run any additional commands with the default configuration.
+- On first startup, the container will create the project and install dependencies, so you don't need to run any additional commands with the default configuration.
   
 - The first startup may take a few minutes as the container needs to create the project and install dependencies.
 
