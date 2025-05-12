@@ -18,7 +18,7 @@ export default defineConfig({
     },
     proxy: {
       "/api": {
-        target: "http://laravel:8000",
+        target: "http://laravel:8000/api",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ""),
       },
